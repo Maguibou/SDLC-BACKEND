@@ -51,4 +51,6 @@ class RegisterController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    
 }
