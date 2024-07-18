@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscription-users', function (Blueprint $table) {
+        Schema::create('subscription_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subscriptions_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('is_expire')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscription-users');
+        Schema::dropIfExists('subscription_users');
     }
 };
