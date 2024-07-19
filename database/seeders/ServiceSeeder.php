@@ -16,26 +16,29 @@ class ServiceSeeder extends Seeder
     {
         DB::table('services')->insert([
             [
-                'name' => 'Service A',
-                'description' => 'Description for Service A',
-                'price' => 100.00,
-                'agence_id' => 1, // Assurez-vous que l'agence avec l'ID 1 existe
+                'name' => 'Visite guidée',
+                'description' => 'Visiter l\'UAC',
+                'price' => 0,
+                'agence_id' => 1, 
+                'subscription_id' => 1, 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Service B',
-                'description' => 'Description for Service B',
-                'price' => 150.00,
-                'agence_id' => 2, // Assurez-vous que l'agence avec l'ID 2 existe
+                'name' => 'Visite guidée',
+                'description' => 'Visiter la mairie de Cotonou',
+                'price' => 0,
+                'agence_id' => 2,
+                'subscription_id' => 1, 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Service C',
-                'description' => 'Description for Service C',
-                'price' => 200.00,
-                'agence_id' => 3, // Assurez-vous que l'agence avec l'ID 3 existe
+                'name' => 'Visite guidée',
+                'description' => 'Visiter l\'UP',
+                'price' => 0,
+                'agence_id' => 3, 
+                'subscription_id' => 1, 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
