@@ -13,5 +13,6 @@ class Subscription extends Model
         'name',
         'price',
         'description',
+        'monthlyDuration'
     ];
 }

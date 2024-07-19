@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\subscription;
 use Illuminate\Http\Request;
+use Validator;
 
 class SubscriptionController extends Controller
 {
@@ -20,14 +21,20 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+        $validatedData = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required',
             'description' => 'required|string|max:255',
             'monthlyDuration' => 'required|integer',
         ]);
 
-        $subscription = Subscription::create($validatedData);
+        if ($validatedData->fails()) {
+            return response()->json($validatedData->errors()->toJson(), 403);
+        }
+
+        $subscription = Subscription::create(array_merge($validatedData->validated()));
+
 
         return response()->json($subscription, 201);
     }
@@ -46,15 +53,20 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
+        dd('oki');
+        $validatedData =  Validator::make($request->all(), [
             'name' => 'sometimes|required|string|max:255',
             'price' => 'sometimes|required|decimal|max:255',
             'description' => 'sometimes|required|string|max:255',
             'monthlyDuration' => 'sometimes|required|integer',
         ]);
 
+        if ($validatedData->fails()) {
+            return response()->json($validatedData->errors()->toJson(), 403);
+        }
+
         $subscription = Subscription::findOrFail($id);
-        $subscription->update($validatedData);
+        $subscription->update(array_merge($validatedData->validated()));
 
         return response()->json($subscription);
     }
