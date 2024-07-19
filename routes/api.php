@@ -30,12 +30,14 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function($router){
     Route::post('/logout',[AuthController::class, 'logout']);
     Route::get('/profile',[AuthController::class, 'profile']);
 
-    //subscription routes
-    Route::apiResource('subscriptions', SubscriptionController::class);
-
-    //agence routes
-    Route::apiResource('agences', AgenceController::class);
-
-    //service routes
-    Route::apiResource('services', Service::class)->except(['update']);
+    
 });
+
+//subscription routes
+Route::apiResource('subscriptions', SubscriptionController::class);
+
+//agence routes
+Route::apiResource('agences', AgenceController::class);
+
+//service routes
+Route::apiResource('services', Service::class)->except(['update']);
