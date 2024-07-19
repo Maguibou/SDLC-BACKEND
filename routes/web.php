@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubscriptionUserController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -24,3 +26,13 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+
+
+
+Route::get('/subscription-users', [SubscriptionUserController::class, 'index']);
+Route::get('/subscription-users/{id}', [SubscriptionUserController::class, 'show']);
+Route::post('/subscription-users', [SubscriptionUserController::class, 'store']);
+Route::put('/subscription-users/{id}', [SubscriptionUserController::class, 'update']);
+Route::delete('/subscription-users/{id}', [SubscriptionUserController::class, 'destroy']);
+
