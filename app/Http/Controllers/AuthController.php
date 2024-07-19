@@ -27,10 +27,12 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 403);
         }
 
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
+        $user = User::create(
+            array_merge(
+                $validator->validated(),
+                ['password' => bcrypt($request->password)]
+            )
+        );
 
         return response()->json([
             'message' => 'Compte créé avec succès',
@@ -38,6 +40,26 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'email|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 403);
+        }
+        $user = User::findOrFail($id);
+
+        $user->first_name=$request->first_name;
+        dd($user);
+
+
+        return response()->json([
+            'message' => 'Compte créé avec succès',
+            'user' => $user
+        ], 201);
+    }
 
     public function login(Request $request)
     {
@@ -50,29 +72,33 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 422);
         }
 
-        if (!$token=auth()->attempt($validator->validated())) {
+        if (!$token = auth()->attempt($validator->validated())) {
             # code...
-            return response()->json(['error'=>'Non autorisé'], 401);
+            return response()->json(['error' => 'Non autorisé'], 401);
         }
 
         return $this->createNewToken($token);
 
     }
 
-    public function createNewToken($token){
-        return response()->json(['acces_token'=>$token,
-       'token_type'=>'bearer',
-       'expires_in'=>auth()->factory()->getTTL()*60,
-       'user'=>auth()->user() 
-    ]);
+    public function createNewToken($token)
+    {
+        return response()->json([
+            'acces_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
     }
 
 
-    public function profile() {
-        return response()->json(auth()->user(),200);
+    public function profile()
+    {
+        return response()->json(auth()->user(), 200);
     }
 
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
         return response()->json([
             'message' => 'utilisateur déconnecté avec succès',
