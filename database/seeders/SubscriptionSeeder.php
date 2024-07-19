@@ -16,25 +16,25 @@ class SubscriptionSeeder extends Seeder
     {
         DB::table('subscriptions')->insert([
             [
-                'name' => 'Basic Plan',
+                'name' => 'Standard',
                 'price' =>5000,
-                'description' => 'Les services de base.',
+                'description' => 'Visites, assistance virtuelle',
                 'monthlyDuration' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Standard Plan',
-                'price' => 19.99,
-                'description' => 'Tous les services',
+                'name' => 'Gold',
+                'price' => 10000,
+                'description' => 'Assistance virtuelle et Physique',
                 'monthlyDuration' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Premium Plan',
-                'price' => 29.99,
-                'description' => 'Premium plan.',
+                'name' => 'Premium',
+                'price' => 20000,
+                'description' => 'Tous les services et aide complete',
                 'monthlyDuration' => 6,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

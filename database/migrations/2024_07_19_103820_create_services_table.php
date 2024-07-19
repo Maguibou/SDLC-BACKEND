@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->foreignId('agence_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('subscription_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
