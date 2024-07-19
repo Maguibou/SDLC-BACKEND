@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\AuthController;
 use App\Http\Controllers\SubscriptionController;
+use App\Models\Service;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,10 +31,11 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function($router){
     Route::get('/profile',[AuthController::class, 'profile']);
 
     //subscription routes
-    Route::post('subscriptions/update/{id}', [SubscriptionController::class, 'update']);
-    Route::apiResource('subscriptions', SubscriptionController::class)->except(['update']);
+    Route::apiResource('subscriptions', SubscriptionController::class);
 
     //agence routes
-    Route::apiResource('agencies', AgenceController::class);
+    Route::apiResource('agences', AgenceController::class);
 
+    //service routes
+    Route::apiResource('services', Service::class)->except(['update']);
 });
