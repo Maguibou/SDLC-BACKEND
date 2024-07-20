@@ -10,4 +10,9 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'price', 'agence_id'];
+
+    public function agence()
+    {
+        return $this->belongsTo(Agence::class);
+    }
 }
