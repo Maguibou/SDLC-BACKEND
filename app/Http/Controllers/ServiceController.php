@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agence;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,11 @@ class ServiceController extends Controller
 
         return redirect()->route('services.index');
     }
+
+    function serviceListByAgenceId( $id) {
+        $agence=Agence::findOrFail($id);
+        return $agence->services;
+    } 
 
     public function destroy($id)
     {

@@ -39,6 +39,9 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function($router){
     Route::apiResource('agences', AgenceController::class);
 
     //service routes
-    Route::apiResource('services', ServiceController::class)->except(['update']);
+    Route::apiResource('services', ServiceController::class)->except(['serviceListByAgenceId']);
+    Route::get('/services-by-agence/{id}',[ServiceController::class, 'serviceListByAgenceId']);
+
+    
 });
 
