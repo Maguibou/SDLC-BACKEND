@@ -3,7 +3,7 @@
 use App\Http\Controllers\AgenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\http\Controllers\AuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Service;
@@ -41,7 +41,5 @@ Route::group(['middleware'=>'api','prefix'=>'auth'],function($router){
     //service routes
     Route::apiResource('services', ServiceController::class)->except(['serviceListByAgenceId']);
     Route::get('/services-by-agence/{id}',[ServiceController::class, 'serviceListByAgenceId']);
-
-    
 });
 

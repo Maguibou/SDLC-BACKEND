@@ -9,7 +9,7 @@ use Validator;
 class AuthController extends Controller
 {
     //
-    public function _construct()
+    public function __construct()
     {
         $this->middleware("auth:api", ['except' => ['login', 'register']]);
     }
