@@ -41,7 +41,35 @@ class ServiceSeeder extends Seeder
                 'subscription_id' => 1, 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]
+            ],
+            [
+                'name' => 'Aide administrative',
+                'description' => 'Se faire accompagner pour atteindre plus facilement les administrations',
+                'price' => 0,
+                'agence_id' => 2, 
+                'subscription_id' => 2, 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name' => 'Inscription a l\'UAC',
+                'description' => 'Se faire accompagner pour atteindre plus facilement les administrations',
+                'price' => 0,
+                'agence_id' => 1, 
+                'subscription_id' => 2, 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+            [
+                'name' => 'Aide aux depots de dossiers UP',
+                'description' => 'Se faire accompagner pour atteindre plus facilement les administrations',
+                'price' => 0,
+                'agence_id' => 3, 
+                'subscription_id' => 2, 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
