@@ -52,6 +52,10 @@ class ServiceController extends Controller
         return redirect()->route('services.index');
     }
 
+    function serviceListByAgenceId( $id) {
+        
+    } 
+
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
